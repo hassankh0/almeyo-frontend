@@ -110,6 +110,14 @@ function offCanvas() {
     
     $toggler.add($overlay).add(".navbar-close, .panel-close-btn").on("click", function() {
         $overlay.toggleClass("overlay-open");
+        
+        // Disable/enable scroll when menu opens/closes
+        if ($overlay.hasClass("overlay-open")) {
+            $("body").css("overflow", "hidden");
+        } else {
+            $("body").css("overflow", "auto");
+        }
+        
         if ($(this).is($overlay)) {
             $toggler.removeClass("active");
             $menu.removeClass("menu-on");
@@ -117,7 +125,10 @@ function offCanvas() {
     });
     
     $(window).on("resize.offcanvas", function() {
-        if ($(window).width() > 991) $overlay.removeClass("overlay-open");
+        if ($(window).width() > 991) {
+            $overlay.removeClass("overlay-open");
+            $("body").css("overflow", "auto");
+        }
     });
 }
 
