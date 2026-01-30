@@ -26,26 +26,60 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load footer
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-        // Create wrapper divs structure to replace the placeholder
-        const footerWrapper = document.createElement('div');
-        footerWrapper.innerHTML = `
-            <!--====== Start Footer ======-->
-            <footer class="default-footer rs-footer pt-5 p-r z-1">
-                <div class="shape shape-one"><img src="assets/images/innerpage/footer/shape1.png" alt="shape"></div>
-                <div class="shape shape-two"><img src="assets/images/innerpage/footer/shape2.png" alt="shape"></div>
-                <div class="footer-content-wrapper"></div>
-            </footer><!--====== End Footer ======-->
-            </div>
-        </div>`;
-        
-        // Get the footer content and insert it
         fetch('assets/includes/footer.html')
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
             .then(data => {
-                // Find the wrapper div inside our created structure
-                const footerContentWrapper = footerWrapper.querySelector('.footer-content-wrapper');
-                footerContentWrapper.innerHTML = data;
-                footerPlaceholder.outerHTML = footerWrapper.innerHTML;
+                if (data && data.trim().length > 0) {
+                    // Insert footer after placeholder, inside smooth-content
+                    footerPlaceholder.insertAdjacentHTML('afterend', data);
+                    footerPlaceholder.remove();
+                    
+                    console.log('Footer HTML inserted successfully');
+                    
+                    // Reinitialize all animation and scroll systems
+                    setTimeout(function() {
+                        // Refresh AOS animations
+                        if (typeof AOS !== 'undefined') {
+                            AOS.refreshHard();
+                        }
+                        
+                        // Kill and recreate ScrollSmoother
+                        if (typeof ScrollSmoother !== 'undefined') {
+                            try {
+                                // Kill existing ScrollSmoother
+                                let existingSmoother = ScrollSmoother.get();
+                                if (existingSmoother) {
+                                    existingSmoother.kill();
+                                }
+                                
+                                // Recreate it
+                                if (window.innerWidth > 991) {
+                                    ScrollSmoother.create({
+                                        smooth: 1,
+                                        effects: true
+                                    });
+                                    console.log('ScrollSmoother recreated');
+                                }
+                            } catch(e) {
+                                console.log('ScrollSmoother recreation:', e.message);
+                            }
+                        }
+                        
+                        // Refresh ScrollTrigger
+                        if (typeof ScrollTrigger !== 'undefined') {
+                            ScrollTrigger.refresh();
+                        }
+                        
+                        console.log('Footer animations and scroll system reinitialized');
+                    }, 100);
+                } else {
+                    console.error('Footer HTML is empty');
+                }
             })
             .catch(error => console.error('Error loading footer:', error));
     }

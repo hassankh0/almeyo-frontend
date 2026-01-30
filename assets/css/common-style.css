@@ -1482,6 +1482,9 @@ label {
 /* Footer CSS */
 .default-footer {
   overflow: hidden;
+  position: relative;
+  z-index: 1;
+  min-height: 200px;
 }
 .default-footer .shape {
   position: absolute;
@@ -1502,6 +1505,33 @@ label {
 .rs-footer {
   background-color: #091D1C;
   color: var(--white-color);
+  position: relative;
+  z-index: 1;
+}
+
+.rs-footer .footer-widget {
+  color: #fff;
+}
+
+.rs-footer .footer-widget h4,
+.rs-footer .footer-widget-area h4 {
+  color: #fff;
+}
+
+.rs-footer .footer-widget-area p {
+  color: #fff;
+}
+
+.rs-footer .widget-title {
+  color: #fff;
+}
+
+.rs-footer a {
+  color: #fff;
+}
+
+.rs-footer ul li a:hover {
+  color: var(--primary-color);
 }
 .rs-footer .footer-newsletter-widget .widget-content form .form_control {
   border-color: rgba(255, 255, 255, 0.1);
