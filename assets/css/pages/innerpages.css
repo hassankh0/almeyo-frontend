@@ -1508,8 +1508,23 @@ Version: 1.0
   line-height: 32px;
 }
 
+.map-sec {
+  position: relative;
+  z-index: -1;
+}
+
 .map-sec .map-box iframe {
   height: 500px;
+}
+
+/* Scrollable time picker - target nice-select wrapper created by the plugin */
+select.time-picker-scroll {
+  max-height: 200px !important;
+}
+
+.time-picker-scroll ~ .nice-select .list {
+  max-height: 180px !important;
+  overflow-y: scroll !important;
 }
 
 .bistly-contact-sec .bistly-content-box .bistly-opening-time {
