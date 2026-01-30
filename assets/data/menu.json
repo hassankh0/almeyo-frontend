@@ -1,0 +1,174 @@
+{
+  "menu": [
+    {
+      "category": "Spécialités Franco-Libanaises lola",
+      "subtitle": "Notre Sélection",
+      "items": [
+        {
+          "id": 1,
+          "name": "Mezze Libanais",
+          "description": "Assortiment de saveurs libanaises : houmous, baba ghanoush, tabulé, falafel et pains pita grillés",
+          "price": 18.00,
+          "image": "assets/images/innerpage/menu/menu-thumb1.jpg",
+          "rating": 5
+        },
+        {
+          "id": 2,
+          "name": "Pâtes aux Champignons Crémeux",
+          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
+          "price": 15.50,
+          "image": "assets/images/innerpage/menu/menu-thumb2.jpg",
+          "rating": 5
+        },
+        {
+          "id": 3,
+          "name": "Brochette de Poulet",
+          "description": "Poulet mariné aux épices libanaises, grillé à la perfection, servi avec riz et légumes",
+          "price": 16.00,
+          "image": "assets/images/innerpage/menu/menu-thumb3.jpg",
+          "rating": 5
+        },
+        {
+          "id": 4,
+          "name": "Burger de Boeuf Classique",
+          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
+          "price": 13.50,
+          "image": "assets/images/innerpage/menu/menu-thumb4.jpg",
+          "rating": 5
+        },
+        {
+          "id": 5,
+          "name": "Couscous Merguez",
+          "description": "Couscous moelleux aux merguez libanaises, pois chiches et légumes frais du jour",
+          "price": 14.00,
+          "image": "assets/images/innerpage/menu/menu-thumb5.jpg",
+          "rating": 5
+        },
+        {
+          "id": 6,
+          "name": "Poulet Grillé aux Herbes",
+          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
+          "price": 14.00,
+          "image": "assets/images/innerpage/menu/menu-thumb6.jpg",
+          "rating": 5
+        },
+        {
+          "id": 7,
+          "name": "Poulet Grillé aux Herbes",
+          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
+          "price": 14.00,
+          "image": "assets/images/innerpage/menu/menu-thumb6.jpg",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "category": "Savourez l'Après-midi",
+      "subtitle": "Déjeuner",
+      "items": [
+        {
+          "id": 7,
+          "name": "Sandwich Club Classique",
+          "description": "Sandwich triple étage avec dinde, bacon, laitue, tomate et mayonnaise.",
+          "price": 13.00,
+          "image": "assets/images/innerpage/menu/menu-thumb7.jpg",
+          "rating": 5
+        },
+        {
+          "id": 8,
+          "name": "Pizza Margherita sur Pain Plat",
+          "description": "Pain plat garni de tomate fraîche, mozzarella, basilic et huile d'olive.",
+          "price": 11.50,
+          "image": "assets/images/innerpage/menu/menu-thumb8.jpg",
+          "rating": 5
+        },
+        {
+          "id": 9,
+          "name": "Bol de Riz au Poulet Épicé",
+          "description": "Poulet épicé sur lit de riz avec légumes et sauce maison relevée.",
+          "price": 12.50,
+          "image": "assets/images/innerpage/menu/menu-thumb9.jpg",
+          "rating": 5
+        },
+        {
+          "id": 10,
+          "name": "Salade Quinoa Méditerranéenne",
+          "description": "Salade quinoa avec concombre, tomate, olives, feta et vinaigrette citron.",
+          "price": 12.00,
+          "image": "assets/images/innerpage/menu/menu-thumb10.jpg",
+          "rating": 5
+        },
+        {
+          "id": 11,
+          "name": "Sauté de Poulet au Basilic Thaï",
+          "description": "Poulet sauté avec basilic frais, ail, piment et sauce savoureuse.",
+          "price": 14.50,
+          "image": "assets/images/innerpage/menu/menu-thumb11.jpg",
+          "rating": 5
+        },
+        {
+          "id": 12,
+          "name": "Poisson Grillé au Citron",
+          "description": "Poisson frais grillé à la perfection, citron, herbes et épices légères.",
+          "price": 20.00,
+          "image": "assets/images/innerpage/menu/menu-thumb12.jpg",
+          "rating": 5
+        }
+      ]
+    },
+    {
+      "category": "Spéciales du Jour",
+      "subtitle": "Nos Plats de Résistance",
+      "items": [
+        {
+          "id": 13,
+          "name": "Kefta de Boeuf",
+          "description": "Viande hachée aux épices libanaises, grillée avec oignons et persil frais",
+          "price": 17.00,
+          "image": "assets/images/innerpage/menu/menu-thumb13.jpg",
+          "rating": 5
+        },
+        {
+          "id": 14,
+          "name": "Poulet aux Amandes",
+          "description": "Poulet avec sauce aux amandes, raisins secs et épices orientales",
+          "price": 18.50,
+          "image": "assets/images/innerpage/menu/menu-thumb14.jpg",
+          "rating": 5
+        },
+        {
+          "id": 15,
+          "name": "Lamb Shawarma",
+          "description": "Agneau marié lentement avec herbes et épices, servi avec sauce tahini",
+          "price": 19.00,
+          "image": "assets/images/innerpage/menu/menu-thumb15.jpg",
+          "rating": 5
+        },
+        {
+          "id": 16,
+          "name": "Tabboulé Frais",
+          "description": "Persil frais, tomates, oignons, citron et huile d'olive de qualité",
+          "price": 11.00,
+          "image": "assets/images/innerpage/menu/menu-thumb16.jpg",
+          "rating": 5
+        },
+        {
+          "id": 17,
+          "name": "Assortiment de Légumes",
+          "description": "Légumes de saison grillés avec herbes, huile d'olive et épices",
+          "price": 12.00,
+          "image": "assets/images/innerpage/menu/menu-thumb17.jpg",
+          "rating": 5
+        },
+        {
+          "id": 18,
+          "name": "Crevettes à l'Ail",
+          "description": "Crevettes grillées avec beaucoup d'ail, persil et citron frais",
+          "price": 22.00,
+          "image": "assets/images/innerpage/menu/menu-thumb18.jpg",
+          "rating": 5
+        }
+      ]
+    }
+  ]
+}
