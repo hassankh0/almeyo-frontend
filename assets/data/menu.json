@@ -1,173 +1,83 @@
 {
   "menu": [
     {
-      "category": "Spécialités Franco-Libanaises lola",
-      "subtitle": "Notre Sélection",
+      "category": "Nos Classiques",
+      "subtitle": "Tous nos plats sont accompagnés de frites et de salade",
       "items": [
-        {
-          "id": 1,
-          "name": "Mezze Libanais",
-          "description": "Assortiment de saveurs libanaises : houmous, baba ghanoush, tabulé, falafel et pains pita grillés",
-          "price": 18.00,
-          "image": "assets/images/innerpage/menu/menu-thumb1.jpg",
-          "rating": 5
-        },
-        {
-          "id": 2,
-          "name": "Pâtes aux Champignons Crémeux",
-          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
-          "price": 15.50,
-          "image": "assets/images/innerpage/menu/menu-thumb2.jpg",
-          "rating": 5
-        },
-        {
-          "id": 3,
-          "name": "Brochette de Poulet",
-          "description": "Poulet mariné aux épices libanaises, grillé à la perfection, servi avec riz et légumes",
-          "price": 16.00,
-          "image": "assets/images/innerpage/menu/menu-thumb3.jpg",
-          "rating": 5
-        },
-        {
-          "id": 4,
-          "name": "Burger de Boeuf Classique",
-          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
-          "price": 13.50,
-          "image": "assets/images/innerpage/menu/menu-thumb4.jpg",
-          "rating": 5
-        },
-        {
-          "id": 5,
-          "name": "Couscous Merguez",
-          "description": "Couscous moelleux aux merguez libanaises, pois chiches et légumes frais du jour",
-          "price": 14.00,
-          "image": "assets/images/innerpage/menu/menu-thumb5.jpg",
-          "rating": 5
-        },
-        {
-          "id": 6,
-          "name": "Poulet Grillé aux Herbes",
-          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
-          "price": 14.00,
-          "image": "assets/images/innerpage/menu/menu-thumb6.jpg",
-          "rating": 5
-        },
-        {
-          "id": 7,
-          "name": "Poulet Grillé aux Herbes",
-          "description": "Crevettes à la sauce à l'ail crémeux avec épinards, tomates et pâtes fraiches",
-          "price": 14.00,
-          "image": "assets/images/innerpage/menu/menu-thumb6.jpg",
-          "rating": 5
-        }
+        { "id": 1, "name": "Menu Enfant", "description": "Tenders poulet et frites sauce ketchup ou mayonnaise", "price": 12.50 },
+        { "id": 2, "name": "Bavette / Faux-filet / Entrecôte", "description": "Selon disponibilité", "price": 17.80 },
+        { "id": 3, "name": "Steak Haché / à Cheval (Halal)", "description": "", "price": 14.50 },
+        { "id": 4, "name": "Steak tartare", "description": "", "price": 14.50 },
+        { "id": 5, "name": "Andouillette", "description": "", "price": 15.50 },
+        { "id": 6, "name": "Burger (Halal)", "description": "", "price": 15.90 },
+        { "id": 7, "name": "Welsh", "description": "", "price": 15.90 },
+        { "id": 8, "name": "Pavé de Saumon", "description": "", "price": 19.50 },
+        { "id": 9, "name": "Magret de Canard", "description": "", "price": 19.90 },
+        { "id": 10, "name": "Frites", "description": "", "price": 5.50 },
+        { "id": 11, "name": "Sauce au choix (supplémentaire)", "description": "Poivre, maroilles, échalote", "price": 1.50 }
       ]
     },
     {
-      "category": "Savourez l'Après-midi",
-      "subtitle": "Déjeuner",
+      "category": "Nos Salades",
+      "subtitle": "",
       "items": [
-        {
-          "id": 7,
-          "name": "Sandwich Club Classique",
-          "description": "Sandwich triple étage avec dinde, bacon, laitue, tomate et mayonnaise.",
-          "price": 13.00,
-          "image": "assets/images/innerpage/menu/menu-thumb7.jpg",
-          "rating": 5
-        },
-        {
-          "id": 8,
-          "name": "Pizza Margherita sur Pain Plat",
-          "description": "Pain plat garni de tomate fraîche, mozzarella, basilic et huile d'olive.",
-          "price": 11.50,
-          "image": "assets/images/innerpage/menu/menu-thumb8.jpg",
-          "rating": 5
-        },
-        {
-          "id": 9,
-          "name": "Bol de Riz au Poulet Épicé",
-          "description": "Poulet épicé sur lit de riz avec légumes et sauce maison relevée.",
-          "price": 12.50,
-          "image": "assets/images/innerpage/menu/menu-thumb9.jpg",
-          "rating": 5
-        },
-        {
-          "id": 10,
-          "name": "Salade Quinoa Méditerranéenne",
-          "description": "Salade quinoa avec concombre, tomate, olives, feta et vinaigrette citron.",
-          "price": 12.00,
-          "image": "assets/images/innerpage/menu/menu-thumb10.jpg",
-          "rating": 5
-        },
-        {
-          "id": 11,
-          "name": "Sauté de Poulet au Basilic Thaï",
-          "description": "Poulet sauté avec basilic frais, ail, piment et sauce savoureuse.",
-          "price": 14.50,
-          "image": "assets/images/innerpage/menu/menu-thumb11.jpg",
-          "rating": 5
-        },
-        {
-          "id": 12,
-          "name": "Poisson Grillé au Citron",
-          "description": "Poisson frais grillé à la perfection, citron, herbes et épices légères.",
-          "price": 20.00,
-          "image": "assets/images/innerpage/menu/menu-thumb12.jpg",
-          "rating": 5
-        }
+        { "id": 12, "name": "Almevo’s", "description": "Crudité, avocat, surimi, saumon fumé", "price": 14.50 },
+        { "id": 13, "name": "Chèvre Chaud", "description": "Crudité, avocat, noix, miel, sauce au chèvre", "price": 14.50 },
+        { "id": 14, "name": "Salade César", "description": "Salade iceberg, croûtons, parmesan, poulet", "price": 14.50 }
       ]
     },
     {
-      "category": "Spéciales du Jour",
-      "subtitle": "Nos Plats de Résistance",
+      "category": "Entrée Froide",
+      "subtitle": "",
       "items": [
-        {
-          "id": 13,
-          "name": "Kefta de Boeuf",
-          "description": "Viande hachée aux épices libanaises, grillée avec oignons et persil frais",
-          "price": 17.00,
-          "image": "assets/images/innerpage/menu/menu-thumb13.jpg",
-          "rating": 5
-        },
-        {
-          "id": 14,
-          "name": "Poulet aux Amandes",
-          "description": "Poulet avec sauce aux amandes, raisins secs et épices orientales",
-          "price": 18.50,
-          "image": "assets/images/innerpage/menu/menu-thumb14.jpg",
-          "rating": 5
-        },
-        {
-          "id": 15,
-          "name": "Lamb Shawarma",
-          "description": "Agneau marié lentement avec herbes et épices, servi avec sauce tahini",
-          "price": 19.00,
-          "image": "assets/images/innerpage/menu/menu-thumb15.jpg",
-          "rating": 5
-        },
-        {
-          "id": 16,
-          "name": "Tabboulé Frais",
-          "description": "Persil frais, tomates, oignons, citron et huile d'olive de qualité",
-          "price": 11.00,
-          "image": "assets/images/innerpage/menu/menu-thumb16.jpg",
-          "rating": 5
-        },
-        {
-          "id": 17,
-          "name": "Assortiment de Légumes",
-          "description": "Légumes de saison grillés avec herbes, huile d'olive et épices",
-          "price": 12.00,
-          "image": "assets/images/innerpage/menu/menu-thumb17.jpg",
-          "rating": 5
-        },
-        {
-          "id": 18,
-          "name": "Crevettes à l'Ail",
-          "description": "Crevettes grillées avec beaucoup d'ail, persil et citron frais",
-          "price": 22.00,
-          "image": "assets/images/innerpage/menu/menu-thumb18.jpg",
-          "rating": 5
-        }
+        { "id": 15, "name": "Houmous", "description": "", "price": 7.00 },
+        { "id": 16, "name": "Moutabal", "description": "", "price": 7.00 },
+        { "id": 17, "name": "Feuille de Vigne (4 pièces)", "description": "", "price": 7.00 },
+        { "id": 18, "name": "Taboulé Libanais", "description": "", "price": 7.50 }
+      ]
+    },
+    {
+      "category": "Entrée Chaude",
+      "subtitle": "",
+      "items": [
+        { "id": 19, "name": "Falafel (4 pièces)", "description": "", "price": 7.00 },
+        { "id": 20, "name": "Fatayer Épinard (4 pièces)", "description": "", "price": 7.50 },
+        { "id": 21, "name": "Sambousek Fromage (4 pièces)", "description": "", "price": 7.50 },
+        { "id": 22, "name": "Sambousek Viande (4 pièces)", "description": "", "price": 7.50 }
+      ]
+    },
+    {
+      "category": "Assiettes (Spécialité Libanaise)",
+      "subtitle": "",
+      "items": [
+        { "id": 23, "name": "Shawarma Boeuf (Halal)", "description": "Émincé de boeuf mariné, frites, salade, sauce tahina", "price": 15.50 },
+        { "id": 24, "name": "Shawarma Poulet (Halal)", "description": "Émincé de poulet mariné, frites, salade, sauce à l’ail", "price": 14.30 },
+        { "id": 25, "name": "Shawarma Mixte (Halal)", "description": "Poulet et boeuf marinés, frites, salade, sauce ail ou tahina", "price": 16.50 },
+        { "id": 26, "name": "Kefta (Halal)", "description": "3 brochettes, frites, salade et houmous", "price": 15.50 },
+        { "id": 27, "name": "Grillade Mixte (Halal)", "description": "Brochettes kefta, boeuf et chich taouk, frites, taboulé et houmous", "price": 17.50 },
+        { "id": 28, "name": "Chich Taouk (Halal)", "description": "3 brochettes, frites, salade et sauce à l’ail", "price": 16.00 },
+        { "id": 29, "name": "Falafel", "description": "4 boulettes, frites, salade, houmous, sauce tahina", "price": 13.90 },
+        { "id": 30, "name": "Végétarienne", "description": "Houmous, moutabal, moussaka, sambousek fromage, fatayer épinard, falafel", "price": 16.90 },
+        { "id": 31, "name": "Assiette Mezze", "description": "Taouk, kefta, houmous, moutabal, moussaka, falafel, sambousek fromage", "price": 18.50 },
+        { "id": 32, "name": "Assiette Extra (Halal)", "description": "2 kefta, 2 taouk, houmous, moutabal, falafel, sambousek, frites et taboulé", "price": 52.00 }
+      ]
+    },
+    {
+      "category": "Plancha",
+      "subtitle": "",
+      "items": [
+        { "id": 33, "name": "Plancha Libanaise", "description": "Houmous, moutabal, 2 falafel, sambousek viande et fromage", "price": 12.00 },
+        { "id": 34, "name": "Assiette Fromage", "description": "Fromage emmental", "price": 5.50 }
+      ]
+    },
+    {
+      "category": "Desserts",
+      "subtitle": "",
+      "items": [
+        { "id": 35, "name": "Tiramisu", "description": "", "price": 5.50 },
+        { "id": 36, "name": "Crème Brûlée", "description": "", "price": 5.50 },
+        { "id": 37, "name": "Mouhalabieh", "description": "", "price": 5.50 },
+        { "id": 38, "name": "Fondant au Chocolat", "description": "", "price": 5.50 }
       ]
     }
   ]
