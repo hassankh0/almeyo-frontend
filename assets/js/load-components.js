@@ -23,66 +23,123 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => console.error('Error loading header:', error));
     }
 
-    // Load footer
+    // Load footer with retry mechanism for mobile reliability
     const footerPlaceholder = document.getElementById('footer-placeholder');
     if (footerPlaceholder) {
-        fetch('assets/includes/footer.html')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                if (data && data.trim().length > 0) {
-                    // Insert footer after placeholder, inside smooth-content
-                    footerPlaceholder.insertAdjacentHTML('afterend', data);
-                    footerPlaceholder.remove();
-                    
-                    console.log('Footer HTML inserted successfully');
-                    
-                    // Reinitialize all animation and scroll systems
-                    setTimeout(function() {
-                        // Refresh AOS animations
-                        if (typeof AOS !== 'undefined') {
-                            AOS.refreshHard();
-                        }
+        const loadFooter = (retryCount = 0) => {
+            fetch('assets/includes/footer.html')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    if (data && data.trim().length > 0) {
+                        // Insert footer after placeholder, inside smooth-content
+                        footerPlaceholder.insertAdjacentHTML('afterend', data);
+                        footerPlaceholder.remove();
                         
-                        // Kill and recreate ScrollSmoother
-                        if (typeof ScrollSmoother !== 'undefined') {
-                            try {
-                                // Kill existing ScrollSmoother
-                                let existingSmoother = ScrollSmoother.get();
-                                if (existingSmoother) {
-                                    existingSmoother.kill();
+                        console.log('✓ Footer HTML inserted successfully');
+                        
+                        // Reinitialize all animation and scroll systems
+                        setTimeout(function() {
+                            // Refresh AOS animations multiple times on mobile to ensure detection
+                            if (typeof AOS !== 'undefined') {
+                                AOS.init({
+                                    duration: 1000,
+                                    once: false,
+                                    mirror: true,
+                                    offset: 100
+                                });
+                                AOS.refreshHard();
+                                
+                                // Additional refresh for mobile
+                                if (window.innerWidth < 768) {
+                                    setTimeout(() => AOS.refreshHard(), 100);
+                                    setTimeout(() => AOS.refreshHard(), 300);
                                 }
                                 
-                                // Recreate it
-                                if (window.innerWidth > 991) {
+                                console.log('✓ AOS refreshed for footer');
+                            }
+                            
+                            // Kill and recreate ScrollSmoother only on desktop
+                            if (typeof ScrollSmoother !== 'undefined' && window.innerWidth > 991) {
+                                try {
+                                    // Kill existing ScrollSmoother
+                                    let existingSmoother = ScrollSmoother.get();
+                                    if (existingSmoother) {
+                                        existingSmoother.kill();
+                                    }
+                                    
+                                    // Recreate it
                                     ScrollSmoother.create({
                                         smooth: 1,
                                         effects: true
                                     });
-                                    console.log('ScrollSmoother recreated');
+                                    console.log('✓ ScrollSmoother recreated');
+                                } catch(e) {
+                                    console.log('ScrollSmoother recreation:', e.message);
                                 }
-                            } catch(e) {
-                                console.log('ScrollSmoother recreation:', e.message);
                             }
-                        }
-                        
-                        // Refresh ScrollTrigger
-                        if (typeof ScrollTrigger !== 'undefined') {
-                            ScrollTrigger.refresh();
-                        }
-                        
-                        console.log('Footer animations and scroll system reinitialized');
-                    }, 100);
-                } else {
-                    console.error('Footer HTML is empty');
-                }
-            })
-            .catch(error => console.error('Error loading footer:', error));
+                            
+                            // Refresh ScrollTrigger for all scroll-based animations
+                            if (typeof ScrollTrigger !== 'undefined') {
+                                ScrollTrigger.refresh();
+                            }
+                            
+                            console.log('✓ Footer animations and scroll system reinitialized');
+                        }, 150);
+                    } else {
+                        console.error('Footer HTML is empty');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading footer:', error);
+                    // Retry up to 2 times on mobile
+                    if (retryCount < 2 && window.innerWidth < 768) {
+                        console.log(`Retrying footer load... (attempt ${retryCount + 1})`);
+                        setTimeout(() => loadFooter(retryCount + 1), 1000);
+                    }
+                });
+        };
+        
+        // Start loading footer
+        loadFooter();
     }
+    
+    // Ensure AOS is properly initialized for sections that appear during scroll
+    setTimeout(function() {
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: false,
+                mirror: true,
+                offset: 100
+            });
+            AOS.refreshHard();
+            console.log('✓ AOS initialized globally for scroll animations');
+        }
+        
+        // Add scroll listener for mobile to ensure animations trigger
+        if (window.innerWidth < 768) {
+            let ticking = false;
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        if (typeof AOS !== 'undefined') {
+                            AOS.refreshHard();
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }, false);
+            
+            console.log('✓ Mobile scroll listener enabled for AOS');
+        }
+    }, 300);
 });
 
 // Clean up old event handlers before reattaching
@@ -162,6 +219,18 @@ function offCanvas() {
         if ($(window).width() > 991) {
             $overlay.removeClass("overlay-open");
             $("body").css("overflow", "auto");
+        }
+        
+        // Refresh AOS on resize
+        if (typeof AOS !== 'undefined') {
+            setTimeout(() => AOS.refreshHard(), 100);
+        }
+    });
+    
+    // Handle orientation change on mobile
+    window.addEventListener('orientationchange', function() {
+        if (typeof AOS !== 'undefined') {
+            setTimeout(() => AOS.refreshHard(), 500);
         }
     });
 }

@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zxx">
+    <head>
+        <!--====== Required meta tags ======-->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="description" content="Commander - Restaurant Franco-Libanais ALMEYO">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--====== Title ======-->
+        <title>Commander - ALMEYO</title>
+        <!--====== Favicon Icon ======-->
+        <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+        <!--====== Google Fonts ======-->
+        <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!--====== Flaticon css ======-->
+        <link rel="stylesheet" href="assets/fonts/flaticon/flaticon_bistly.css">
+        <!--====== FontAwesome css ======-->
+        <link rel="stylesheet" href="assets/fonts/fontawesome/css/all.min.css">
+        <!--====== Bootstrap css ======-->
+        <link rel="stylesheet" href="assets/css/plugins/bootstrap.min.css">
+        <!--====== Slick-popup css ======-->
+        <link rel="stylesheet" href="assets/css/plugins/slick.css">
+        <!--====== Magnific-popup css ======-->
+        <link rel="stylesheet" href="assets/css/plugins/magnific-popup.css">
+        <!--====== Nice Select CSS ======-->
+        <link rel="stylesheet" href="assets/css/plugins/nice-select.css">
+        <!--====== AOS Animation ======-->
+        <link rel="stylesheet" href="assets/css/plugins/aos.css">
+        <!--====== Common Style css ======-->
+        <link rel="stylesheet" href="assets/css/common-style.css">
+        <!--====== Style css ======-->
+        <link rel="stylesheet" href="assets/css/pages/innerpages.css">
+        <style>
+            .order-menu-item-quantity {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 10px;
+            }
+            .qty-btn {
+                width: 28px;
+                height: 28px;
+                border: 1px solid #d4a574;
+                background: white;
+                color: #d4a574;
+                border-radius: 3px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 14px;
+                transition: all 0.3s ease;
+            }
+            .qty-btn:hover {
+                background: #d4a574;
+                color: white;
+            }
+            .qty-input {
+                width: 45px;
+                text-align: center;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                padding: 5px;
+                font-size: 14px;
+            }
+            .add-to-cart-btn {
+                padding: 6px 12px;
+                background: #d4a574;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                font-weight: 600;
+                font-size: 12px;
+                transition: all 0.3s ease;
+                margin-left: auto;
+            }
+            .add-to-cart-btn:hover {
+                background: #a67c52;
+            }
+            .orders-container {
+                display: flex;
+                gap: 30px;
+            }
+            .orders-menu-section {
+                flex: 1;
+            }
+            .orders-sidebar {
+                width: 350px;
+            }
+            .cart-section {
+                background: #f9f9f9;
+                border-radius: 8px;
+                padding: 20px;
+                border: 1px solid #eee;
+                position: sticky;
+                top: 20px;
+            }
+            .cart-items {
+                margin-bottom: 20px;
+                max-height: 400px;
+                overflow-y: auto;
+            }
+            .cart-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                padding: 10px 0;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+            }
+            .cart-item:last-child {
+                border-bottom: none;
+            }
+            .cart-item-details {
+                flex: 1;
+            }
+            .cart-item-name {
+                font-weight: 600;
+                color: #2d2d2d;
+            }
+            .cart-item-qty {
+                color: #999;
+                font-size: 12px;
+            }
+            .cart-item-remove {
+                color: #d4a574;
+                cursor: pointer;
+                font-size: 12px;
+                text-decoration: underline;
+                margin-left: 10px;
+            }
+            .cart-item-price {
+                color: #d4a574;
+                font-weight: 600;
+                text-align: right;
+                min-width: 50px;
+            }
+            .cart-total {
+                text-align: right;
+                padding-top: 15px;
+                border-top: 2px solid #d4a574;
+                margin-top: 15px;
+            }
+            .cart-total-label {
+                font-size: 14px;
+                color: #666;
+                margin-bottom: 5px;
+            }
+            .cart-total-amount {
+                font-size: 22px;
+                font-weight: bold;
+                color: #d4a574;
+            }
+            .empty-cart {
+                text-align: center;
+                padding: 30px 10px;
+                color: #999;
+                font-size: 14px;
+            }
+            .order-form-section {
+                background: white;
+                border-radius: 8px;
+                padding: 20px;
+                margin-top: 20px;
+                border: 1px solid #eee;
+            }
+            .order-form-section h4 {
+                font-weight: 600;
+                margin-bottom: 15px;
+                color: #2d2d2d;
+            }
+            .form-group {
+                margin-bottom: 12px;
+            }
+            .form-group label {
+                font-size: 12px;
+                font-weight: 600;
+                color: #2d2d2d;
+                margin-bottom: 5px;
+                display: block;
+            }
+            .form_control {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+                font-size: 13px;
+            }
+            .order-form-section .theme-btn {
+                width: 100%;
+                padding: 10px !important;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+            @media (max-width: 1024px) {
+                .orders-container {
+                    flex-direction: column;
+                }
+                .orders-sidebar {
+                    width: 100%;
+                }
+                .cart-section {
+                    position: static;
+                }
+            }
+        </style>
+    </head>
+    <body class="restaurant-website">
+        <!--====== Start Loader Area ======-->
+        <div class="preloader">
+            <div class="loader"></div>
+        </div><!--====== End Loader Area ======-->
+        <!--====== Start Overlay ======-->
+        <div class="offcanvas__overlay"></div>
+        <!--====== Header Placeholder ======-->
+        <div id="header-placeholder"></div>
+        <!--======  End Header Area  ======-->
+        <div id="smooth-wrapper">
+            <div id="smooth-content">
+                <main>
+                    <!--======  Start Page Banner Section  ======-->
+                    <section class="page-banner bg_cover p-r z-1" style="background-image: url(assets/images/innerpage/bg/menu-bg.png);">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
+                                    <div class="page-content text-center">
+                                        <h1>Commander en Ligne</h1>
+                                        <ul>
+                                            <li><a href="index.html">Accueil</a></li>
+                                            <li>/</li>
+                                            <li>Commandes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!--======  End Page Banner Section  ======-->
+
+                    <!--======  Start Orders Section  ======-->
+                    <section class="bistly-orders-sec py-5">
+                        <div class="container">
+                            <div class="orders-container">
+                                <!-- Menu Items Section -->
+                                <div class="orders-menu-section">
+                                    <div id="dynamic-menu-container"></div>
+                                </div>
+
+                                <!-- Sidebar with Cart and Form -->
+                                <div class="orders-sidebar">
+                                    <!-- Cart Section -->
+                                    <div class="cart-section">
+                                        <h4 style="margin-bottom: 15px;">Mon Panier</h4>
+                                        <div id="cart-items-container" class="cart-items">
+                                            <div class="empty-cart">Votre panier est vide</div>
+                                        </div>
+                                        <div class="cart-total">
+                                            <div class="cart-total-label">Total</div>
+                                            <div class="cart-total-amount" id="cart-total">0,00 €</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Order Form -->
+                                    <div class="order-form-section">
+                                        <h4>Infos de Retrait</h4>
+                                        <form id="orderForm">
+                                            <div class="form-group">
+                                                <label>Nom Complet</label>
+                                                <input type="text" class="form_control" placeholder="Nom" name="fullName" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" class="form_control" placeholder="Email" name="email" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Téléphone</label>
+                                                <input type="tel" class="form_control" placeholder="Téléphone" name="phone" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Date de Retrait</label>
+                                                <input type="date" class="form_control" name="pickupDate" id="pickupDate" required>
+                                                <small id="dateError" style="color: red; display: none; margin-top: 5px;"></small>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Heure de Retrait</label>
+                                                <select class="wide time-picker-scroll" name="pickupTime" id="pickupTime" required style="width: 100%; padding: 8px 12px; border: 1px solid #ddd; border-radius: 3px; font-size: 13px;">
+                                                    <option value="">Sélectionnez une heure</option>
+                                                    <optgroup label="Déjeuner (12:00 - 14:00)">
+                                                        <option value="12:00">12:00</option>
+                                                        <option value="12:30">12:30</option>
+                                                        <option value="13:00">13:00</option>
+                                                        <option value="13:30">13:30</option>
+                                                        <option value="14:00">14:00</option>
+                                                    </optgroup>
+                                                    <optgroup label="Dîner (18:00 - 21:30)">
+                                                        <option value="18:00">18:00</option>
+                                                        <option value="18:30">18:30</option>
+                                                        <option value="19:00">19:00</option>
+                                                        <option value="19:30">19:30</option>
+                                                        <option value="20:00">20:00</option>
+                                                        <option value="20:30">20:30</option>
+                                                        <option value="21:00">21:00</option>
+                                                        <option value="21:30">21:30</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Remarques</label>
+                                                <textarea class="form_control" rows="2" placeholder="Allergies, préférences..." name="notes" style="resize: vertical;"></textarea>
+                                            </div>
+                                            <button type="button" id="submitOrder" class="theme-btn style-one">Passer la Commande</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!--======  End Orders Section  ======-->
+                </main>
+                <!--====== Footer Placeholder ======-->
+                <div id="footer-placeholder"></div>
+            </div>
+        </div>
+
+        <!--====== Jquery js ======-->
+        <script src="assets/js/plugins/jquery-3.7.1.min.js"></script>
+        <!--====== Bootstrap js ======-->
+        <script src="assets/js/plugins/popper.min.js"></script>
+        <!--====== Bootstrap js ======-->
+        <script src="assets/js/plugins/bootstrap.min.js"></script>
+        <!--====== Gsap Js ======-->
+        <script src="assets/js/plugins/gsap/gsap.min.js"></script>
+        <script src="assets/js/plugins/gsap/SplitText.min.js"></script>
+        <script src="assets/js/plugins/gsap/ScrollSmoother.min.js"></script>
+        <script src="assets/js/plugins/gsap/ScrollTrigger.min.js"></script>
+        <!--====== Waypoint js ======-->
+        <script src="assets/js/plugins/jquery.waypoints.js"></script>
+        <!--====== CounterUp js ======-->
+        <script src="assets/js/plugins/jquery.counterup.min.js"></script>
+        <!--====== Slick js ======-->
+        <script src="assets/js/plugins/slick.min.js"></script>
+        <!--====== Magnific js ======-->
+        <script src="assets/js/plugins/jquery.magnific-popup.min.js"></script>
+        <!--====== Nice Select js ======-->
+        <script src="assets/js/plugins/jquery.nice-select.min.js"></script>
+        <!--====== AOS js ======-->
+        <script src="assets/js/plugins/aos.js"></script>
+        <!--====== Main js ======-->
+        <script src="assets/js/common.js"></script>
+        <!--====== InnerPage js ======-->
+        <script src="assets/js/innerpage.js"></script>
+        <!--====== Load Components js ======-->
+        <script src="assets/js/load-components.js"></script>
+        <!--====== Order Menu Loader js ======-->
+        <script src="assets/js/order-menu-loader.js"></script>
+
+        <!--====== Orders Page Script ======-->
+        <script>
+            let cart = {};
+
+            document.addEventListener('DOMContentLoaded', function() {
+                setupOrderForm();
+            });
+
+
+            function increaseQty(itemId) {
+                const input = document.getElementById(`qty-${itemId}`);
+                input.value = parseInt(input.value) + 1;
+            }
+
+            function decreaseQty(itemId) {
+                const input = document.getElementById(`qty-${itemId}`);
+                if (parseInt(input.value) > 0) {
+                    input.value = parseInt(input.value) - 1;
+                }
+            }
+
+            function addToCart(itemId, name, price) {
+                const qty = parseInt(document.getElementById(`qty-${itemId}`).value);
+                
+                if (qty === 0) {
+                    alert('Veuillez sélectionner une quantité');
+                    return;
+                }
+
+                const key = `item-${itemId}`;
+                if (cart[key]) {
+                    cart[key].quantity += qty;
+                } else {
+                    cart[key] = { name, price, quantity: qty, itemId };
+                }
+
+                document.getElementById(`qty-${itemId}`).value = 0;
+                updateCart();
+            }
+
+            function updateCart() {
+                const container = document.getElementById('cart-items-container');
+                let total = 0;
+                let html = '';
+
+                if (Object.keys(cart).length === 0) {
+                    html = '<div class="empty-cart">Votre panier est vide</div>';
+                } else {
+                    Object.keys(cart).forEach(key => {
+                        const item = cart[key];
+                        const itemTotal = item.price * item.quantity;
+                        total += itemTotal;
+                        
+                        html += `
+                            <div class="cart-item">
+                                <div class="cart-item-details">
+                                    <div class="cart-item-name">${item.name}</div>
+                                    <div class="cart-item-qty">Qty: ${item.quantity}</div>
+                                </div>
+                                <div class="cart-item-price">${itemTotal.toFixed(2)}€</div>
+                                <span class="cart-item-remove" onclick="removeFromCart('${key}')">✕</span>
+                            </div>
+                        `;
+                    });
+                }
+
+                container.innerHTML = html;
+                document.getElementById('cart-total').textContent = total.toFixed(2) + ' €';
+            }
+
+            function removeFromCart(key) {
+                delete cart[key];
+                updateCart();
+            }
+
+            function setupOrderForm() {
+                const submitBtn = document.getElementById('submitOrder');
+                const form = document.getElementById('orderForm');
+                const dateInput = document.getElementById('pickupDate');
+                const dateError = document.getElementById('dateError');
+
+                // Set minimum date to today
+                if (dateInput) {
+                    const today = new Date().toISOString().split('T')[0];
+                    dateInput.min = today;
+
+                    // Validate date - block Sundays
+                    dateInput.addEventListener('change', function(e) {
+                        const selectedDate = new Date(this.value + 'T00:00:00');
+                        const dayOfWeek = selectedDate.getDay();
+
+                        if (dayOfWeek === 0) { // Sunday = 0
+                            dateError.textContent = 'Le restaurant est fermé le dimanche.';
+                            dateError.style.display = 'block';
+                            this.value = '';
+                            
+                            // Hide error after 5 seconds
+                            setTimeout(() => {
+                                dateError.style.display = 'none';
+                            }, 5000);
+                        } else {
+                            // Valid date selected
+                            dateError.style.display = 'none';
+                        }
+                    });
+                }
+
+                if (submitBtn && form) {
+                    submitBtn.addEventListener('click', async function(e) {
+                        e.preventDefault();
+
+                        if (Object.keys(cart).length === 0) {
+                            alert('Votre panier est vide! Ajoutez des articles avant de commander.');
+                            return;
+                        }
+
+                        if (!form.checkValidity()) {
+                            form.reportValidity();
+                            return;
+                        }
+
+                        const orderItems = [];
+                        let totalPrice = 0;
+                        Object.keys(cart).forEach(key => {
+                            const item = cart[key];
+                            const itemTotal = item.price * item.quantity;
+                            orderItems.push({
+                                id: item.itemId,
+                                name: item.name,
+                                price: item.price,
+                                quantity: item.quantity,
+                                subtotal: itemTotal
+                            });
+                            totalPrice += itemTotal;
+                        });
+
+                        const orderData = {
+                            customer: {
+                                fullName: form.querySelector('input[name="fullName"]').value,
+                                email: form.querySelector('input[name="email"]').value,
+                                phone: form.querySelector('input[name="phone"]').value
+                            },
+                            pickup: {
+                                date: form.querySelector('input[name="pickupDate"]').value,
+                                time: form.querySelector('select[name="pickupTime"]').value
+                            },
+                            items: orderItems,
+                            totalPrice: totalPrice,
+                            notes: form.querySelector('textarea[name="notes"]').value,
+                            orderDate: new Date().toISOString()
+                        };
+
+                        const originalText = submitBtn.textContent;
+                        submitBtn.textContent = 'Traitement...';
+                        submitBtn.disabled = true;
+
+                        try {
+                            const response = await fetch('https://votre-api.com/api/orders', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(orderData)
+                            });
+
+                            if (response.ok) {
+                                const result = await response.json();
+                                alert('Commande passée avec succès! Numéro: ' + (result.orderId || 'EN ATTENTE'));
+                                cart = {};
+                                updateCart();
+                                form.reset();
+                            } else {
+                                alert('Erreur lors de la validation. Veuillez réessayer.');
+                            }
+                        } catch (error) {
+                            console.error('Erreur:', error);
+                            alert('Erreur de connexion. Vérifiez votre connexion internet.');
+                        } finally {
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }
+                    });
+                }
+            }
+
+            window.addEventListener('load', function() {
+                if (window.AOS) {
+                    AOS.refresh();
+                }
+            });
+        </script>
+    </body>
+</html>

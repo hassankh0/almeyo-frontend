@@ -1,33 +1,104 @@
-// Load and render menu dynamically from JSON
-document.addEventListener('DOMContentLoaded', function() {
-    loadMenuData();
+// Load and render menu dynamically from API
+console.log('[MENU] Script loaded');
+
+document.addEventListener('DOMContentLoaded', async function() {
+    console.log('[MENU] DOM Ready - loading menu...');
+    await loadMenuData();
 });
 
-function loadMenuData() {
-    fetch('assets/data/menu.json')
-        .then(response => response.json())
-        .then(data => {
-            renderMenu(data.menu);
-            // Reinitialize animations after DOM update
-            setTimeout(() => {
-                // Initialize/refresh AOS (Animate On Scroll)
-                if (window.AOS) {
-                    AOS.init({
-                        duration: 800,
-                        easing: 'ease-in-out',
-                        once: true,
-                        mirror: false,
-                        offset: 100
-                    });
-                    AOS.refresh();
-                }
-                // Refresh GSAP ScrollTrigger for smooth scroll effects
-                if (window.gsap && window.ScrollTrigger) {
-                    ScrollTrigger.refresh();
-                }
-            }, 150);
-        })
-        .catch(error => console.error('Error loading menu data:', error));
+/**
+ * Load menu data from API asynchronously
+ */
+async function loadMenuData() {
+    try {
+        console.log('[MENU] Fetching menu from API...');
+        
+        // Fetch menu data from backend API
+        const response = await fetch('/api/menu', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        // Check if response is ok
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        // Parse JSON response
+        const result = await response.json();
+        console.log(`[MENU] ✓ Received ${result.data.length} items from API`);
+        
+        // Transform API data to categorized structure
+        const categories = transformMenuData(result.data);
+        console.log(`[MENU] ✓ Organized into ${categories.length} categories`);
+        
+        // Render the menu
+        renderMenu(categories);
+        console.log('[MENU] ✓✓✓ MENU LOADED SUCCESSFULLY ✓✓✓');
+        
+    } catch (error) {
+        console.error('[MENU] ✗ Error loading menu:', error.message);
+    }
+}
+
+/**
+ * Construct image URL from API response
+ * - If image_url is provided: fetch from backend (/images/menu/...)
+ * - If image_url is null: use backend default image
+ */
+function constructImageUrl(imageUrlFromApi) {
+    // If no image from backend, use backend default image
+    if (!imageUrlFromApi) {
+        return '/images/menu/default.png';
+    }
+    
+    // If URL already has a leading slash (from backend), return as-is
+    // nginx will proxy /images/ to backend:3000/images/
+    if (imageUrlFromApi.startsWith('/')) {
+        return imageUrlFromApi;
+    }
+    
+    // If URL is already absolute, return as is
+    if (imageUrlFromApi.startsWith('http')) {
+        return imageUrlFromApi;
+    }
+    
+    // Otherwise prepend / (shouldn't happen, but safe fallback)
+    return `/${imageUrlFromApi}`;
+}
+
+/**
+ * Transform flat API response into categorized menu structure
+ * @param {Array} items - Flat array of menu items from API
+ * @returns {Array} Categorized menu structure
+ */
+function transformMenuData(items) {
+    const categoryMap = {};
+    
+    // Group items by category
+    items.forEach(item => {
+        const categoryName = item.category || 'Autres';
+        
+        if (!categoryMap[categoryName]) {
+            categoryMap[categoryName] = {
+                category: categoryName,
+                subtitle: '',
+                items: []
+            };
+        }
+        
+        categoryMap[categoryName].items.push({
+            name: item.name,
+            description: item.description || '',
+            price: item.price,
+            image: constructImageUrl(item.image_url)
+        });
+    });
+    
+    // Convert to array (maintains order)
+    return Object.values(categoryMap);
 }
 
 function renderMenu(categories) {
@@ -52,6 +123,16 @@ function renderMenu(categories) {
     
     // Append all at once
     menuContainer.appendChild(fragment);
+    
+    // Refresh animations after content is in DOM
+    setTimeout(() => {
+        if (typeof AOS !== 'undefined') {
+            AOS.refreshHard();
+        }
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
+    }, 100);
 }
 
 function createCategorySection(category, index) {
@@ -63,8 +144,8 @@ function createCategorySection(category, index) {
                 <div class="col-lg-8">
                     <!-- Section Title -->
                     <div class="section-title text-center ${index === 0 ? 'mt-3' : ''}">
-                        <span class="sub-title" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">${category.subtitle}</span>
-                        <h2 class="text-anm" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">${category.category}</h2>
+                        <h2 class="sub-title" style="font-size: 50px;" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">${category.category}</h2>
+                        <h6 class="text-anm" data-aos="fade-up" data-aos-duration="1200" data-aos-once="true">${category.subtitle}</h6>
                     </div>
                 </div>
             </div>
@@ -81,13 +162,15 @@ function createMenuItems(items) {
     let leftItems = '';
     let rightItems = '';
     
-    // Split items into two columns
-    items.slice(0, 3).forEach((item, i) => {
+    // Split items equally between columns (or nearly equal with 1 difference)
+    const middleIndex = Math.ceil(items.length / 2);
+    
+    items.slice(0, middleIndex).forEach((item, i) => {
         leftItems += createMenuItemHTML(item, i);
     });
     
-    items.slice(3).forEach((item, i) => {
-        rightItems += createMenuItemHTML(item, i + 3);
+    items.slice(middleIndex).forEach((item, i) => {
+        rightItems += createMenuItemHTML(item, i + middleIndex);
     });
     
     return `
@@ -108,11 +191,19 @@ function createMenuItemHTML(item, index) {
     const durations = ['800', '1000', '1200'];
     const duration = durations[index % 3];
     
+    // Use image from API or fallback to local default placeholder
+    const imageUrl = item.image || '/assets/images/innerpage/menu/default.png';
+    
     return `
         <!-- Bistly Menu Item -->
         <div class="bistly-menu-list-item mb-4" data-aos="fade-up" data-aos-duration="${duration}">
             <div class="thumbnail">
-                <img src="${item.image}" alt="${item.name}">
+                <img 
+                    src="${imageUrl}" 
+                    alt="${item.name}"
+                    onerror="this.src='/assets/images/innerpage/menu/default.png'"
+                    width="150" height="150""
+                >
             </div>
             <div class="content">
                 <h4><a href="menu-details.html">${item.name}</a><span class="price">${item.price.toFixed(2)}€</span> </h4>

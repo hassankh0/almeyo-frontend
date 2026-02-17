@@ -1,0 +1,46 @@
+{
+    "reviews": [
+        {
+            "id": 1,
+            "rating": 5,
+            "text": "A wonderful experience. I was able to enjoy delicious Lebanese specialties with their generous Mézé plate, and finished with their Mouhalabieh dessert. Very warm welcome. I recommend",
+            "author": "Leegan Dupros",
+            "delay": 800
+        },
+        {
+            "id": 2,
+            "rating": 5,
+            "text": "Superbe découverte! Mon cousin m'a fait découvrir ce restaurant ce samedi midi. Plus que ravie! Mes papilles ont voyagé. L'établissement ne paye pas de mine de l'extérieur mais le personnel est chaleureux et surtout de bon conseils.",
+            "author": "Anais Jansen",
+            "delay": 1000
+        },
+        {
+            "id": 3,
+            "rating": 4,
+            "text": "Une pause tranquille et conviviale dans la journée. Le tout dans une ambiance familiale. Merci Alphonso 😊",
+            "author": "Ericka Cagnard",
+            "delay": 1200
+        },
+        {
+            "id": 4,
+            "rating": 5,
+            "text": "Très bon repas. Le patron est chaleureux et accueillant, le service est rapide. Meilleur houmous de ma vie!",
+            "author": "Mathuilde",
+            "delay": 1400
+        },
+        {
+            "id": 5,
+            "rating": 5,
+            "text": "Très bon franchement, bonne découverte !! Une carte pas trop longue signe souvent de bons plats (:",
+            "author": "Grégoir Lal",
+            "delay": 1600
+        },
+        {
+            "id": 6,
+            "rating": 5,
+            "text": "A brasserie that deserves a stop! It will quickly become your canteen! Fancy a traditional dish like Welsh or bavette or even a good Lebanese mezze, this is the ideal place in Fives! with excellent value for money! And I'll let you discover the owner! A beautiful soul!",
+            "author": "Sebastien Duhem",
+            "delay": 1800
+        }
+    ]
+}
