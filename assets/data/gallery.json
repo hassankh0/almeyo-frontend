@@ -2,39 +2,57 @@
   "gallery": [
     {
       "id": 1,
-      "image": "assets/images/gallery-images/gallery-img1.jpg"
-    },
+      "image": "assets/images/gallery-images/2023-03-16.webp"
+    }
+,
     {
       "id": 2,
-      "image": "assets/images/gallery-images/gallery-img2.jpg"
-    },
+      "image": "assets/images/gallery-images/fattuche_l'atlantis_lille_7.webp"
+    }
+,
     {
       "id": 3,
-      "image": "assets/images/gallery-images/gallery-img3.jpg"
-    },
+      "image": "assets/images/gallery-images/hommos_l'atlantis_lille_10.webp"
+    }
+,
     {
       "id": 4,
-      "image": "assets/images/gallery-images/gallery-img1.jpg"
-    },
+      "image": "assets/images/gallery-images/IMG-20220610-WA0000.webp"
+    }
+,
     {
       "id": 5,
-      "image": "assets/images/gallery-images/gallery-img2.jpg"
-    },
+      "image": "assets/images/gallery-images/unnamed (1).webp"
+    }
+,
     {
       "id": 6,
-      "image": "assets/images/gallery-images/gallery-img3.jpg"
-    },
+      "image": "assets/images/gallery-images/unnamed (2).webp"
+    }
+,
     {
       "id": 7,
-      "image": "assets/images/gallery-images/gallery-img1.jpg"
-    },
+      "image": "assets/images/gallery-images/unnamed (3).webp"
+    }
+,
     {
       "id": 8,
-      "image": "assets/images/gallery-images/gallery-img2.jpg"
-    },
+      "image": "assets/images/gallery-images/unnamed (4).webp"
+    }
+,
     {
       "id": 9,
-      "image": "assets/images/gallery-images/gallery-img3.jpg"
+      "image": "assets/images/gallery-images/unnamed (5).webp"
+    }
+,
+    {
+      "id": 10,
+      "image": "assets/images/gallery-images/unnamed (6).webp"
+    }
+,
+    {
+      "id": 11,
+      "image": "assets/images/gallery-images/unnamed.webp"
     }
   ]
 }
