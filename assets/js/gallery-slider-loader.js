@@ -114,6 +114,9 @@ function createSliderItem(image) {
     const img = document.createElement('img');
     img.src = image.image;
     img.alt = `Gallery Image ${image.id}`;
+    img.style.maxwidth = '450px';
+    img.style.objectFit = 'cover';
+    img.style.display = 'block';
     
     imgDiv.appendChild(img);
     item.appendChild(imgDiv);

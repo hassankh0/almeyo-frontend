@@ -1,0 +1,33 @@
+# Robots.txt for ALMEYO Restaurant
+# Last updated: 2026-02-19
+
+# Allow all crawlers to index the website
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /api/
+
+# Disallow directories that should not be indexed
+Disallow: /admin
+Disallow: /private
+Disallow: /api/admin
+Disallow: /*.json$
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /config/
+
+# Specific rules for search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://almeyo.com/sitemap.xml
+
+# Crawl delay (200ms = 0.2 seconds)
+Crawl-delay: 0.2
+
+# Request rate
+Request-rate: 30/1m

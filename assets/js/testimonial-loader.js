@@ -121,8 +121,31 @@ function createTestimonialCard(review) {
     leftArrow.style.lineHeight = '1';
     leftArrow.style.padding = '0 15px';
     leftArrow.style.flexShrink = '0';
-    leftArrow.style.display = window.innerWidth < 768 ? 'none' : 'block';
     leftArrow.onclick = () => $('.testimonial-slider').slick('slickPrev');
+    
+    // Right arrow
+    const rightArrow = document.createElement('button');
+    rightArrow.type = 'button';
+    rightArrow.className = 'slick-next';
+    rightArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    rightArrow.style.all = 'unset';
+    rightArrow.style.cursor = 'pointer';
+    rightArrow.style.fontSize = '48px';
+    rightArrow.style.color = '#D0965C';
+    rightArrow.style.lineHeight = '1';
+    rightArrow.style.padding = '0 15px';
+    rightArrow.style.flexShrink = '0';
+    rightArrow.onclick = () => $('.testimonial-slider').slick('slickNext');
+    
+    // Update arrow visibility based on screen size
+    const updateArrowVisibility = () => {
+        const isMobile = window.innerWidth < 768;
+        leftArrow.style.display = isMobile ? 'none' : 'block';
+        rightArrow.style.display = isMobile ? 'none' : 'block';
+    };
+    
+    updateArrowVisibility();
+    window.addEventListener('resize', updateArrowVisibility);
     
     // Content
     const content = document.createElement('div');
@@ -148,9 +171,17 @@ function createTestimonialCard(review) {
     textP.textContent = review.text;
     textP.style.overflow = 'hidden';
     textP.style.display = '-webkit-box';
-    textP.style.webkitLineClamp = '3';
     textP.style.webkitBoxOrient = 'vertical';
     textP.style.textOverflow = 'ellipsis';
+    
+    // Set line clamp based on screen size
+    const updateLineClamp = () => {
+        const isMobile = window.innerWidth < 768;
+        textP.style.webkitLineClamp = isMobile ? '5' : '3';
+    };
+    
+    updateLineClamp();
+    window.addEventListener('resize', updateLineClamp);
     
     // Create author info
     const authorSpan = document.createElement('span');
@@ -160,21 +191,6 @@ function createTestimonialCard(review) {
     content.appendChild(ratingsDiv);
     content.appendChild(textP);
     content.appendChild(authorSpan);
-    
-    // Right arrow
-    const rightArrow = document.createElement('button');
-    rightArrow.type = 'button';
-    rightArrow.className = 'slick-next';
-    rightArrow.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    rightArrow.style.all = 'unset';
-    rightArrow.style.cursor = 'pointer';
-    rightArrow.style.fontSize = '48px';
-    rightArrow.style.color = '#D0965C';
-    rightArrow.style.lineHeight = '1';
-    rightArrow.style.padding = '0 15px';
-    rightArrow.style.flexShrink = '0';
-    rightArrow.style.display = window.innerWidth < 768 ? 'none' : 'block';
-    rightArrow.onclick = () => $('.testimonial-slider').slick('slickNext');
     
     // Assemble wrapper
     wrapper.appendChild(leftArrow);
