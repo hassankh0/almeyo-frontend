@@ -389,14 +389,13 @@
 
                             if (response.ok) {
                                 const result = await response.json();
-                                alert('Réservation envoyée avec succès!');
+                                showNotification('Réservation envoyée avec succès!', 'success');
                                 form.reset(); // Clear form
                             } else {
-                                alert('Erreur lors de l\'envoi de la réservation. Veuillez réessayer.');
+                                showNotification('Erreur lors de l\'envoi de la réservation. Veuillez réessayer.', 'error');
                             }
                         } catch (error) {
-                            console.error('Erreur:', error);
-                            alert('Erreur de connexion. Veuillez vérifier votre connexion internet.');
+                            showNotification('Erreur de connexion. Veuillez vérifier votre connexion internet.', 'error');
                         } finally {
                             // Restore button state
                             submitBtn.textContent = originalText;
@@ -406,5 +405,7 @@
                 }
             });
         </script>
+        <!--====== Notification System ======-->
+        <script src="assets/js/notification.js"></script>
     </body>
 </html>
