@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }, 150);
     } catch (error) {
-        console.error('Error loading menu data:', error);
         displayErrorMessage('Erreur du chargement du menu. Veuillez rafraichir la page.');
     }
 });
@@ -68,7 +67,6 @@ async function loadOrderMenuData() {
         renderMenuForOrders(categories);
         
     } catch (error) {
-        console.error('Failed to load menu:', error);
         throw error;
     }
 }
@@ -113,7 +111,6 @@ function renderMenuForOrders(categories) {
     const menuContainer = document.getElementById('dynamic-menu-container');
     
     if (!menuContainer) {
-        console.error('Menu container not found');
         return;
     }
     

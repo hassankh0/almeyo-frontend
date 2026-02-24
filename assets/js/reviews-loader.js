@@ -1,8 +1,6 @@
 // Load and render reviews dynamically from JSON file
-console.log('[REVIEWS] Script loaded');
 
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('[REVIEWS] DOM Ready - loading reviews...');
     await loadReviewsData();
 });
 
@@ -11,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadReviewsData() {
     try {
-        console.log('[REVIEWS] Fetching reviews from JSON...');
-        
         // Fetch reviews data from JSON file
         const response = await fetch('/assets/data/reviews.json', {
             method: 'GET',
@@ -28,23 +24,20 @@ async function loadReviewsData() {
         
         // Parse JSON response
         const result = await response.json();
-        console.log(`[REVIEWS] ✓ Received ${result.reviews.length} reviews from JSON`);
         
         // Render the reviews
         renderReviews(result.reviews);
-        console.log('[REVIEWS] ✓✓✓ REVIEWS LOADED SUCCESSFULLY ✓✓✓');
         
         // Initialize AOS for animations after reviews are rendered
         setTimeout(() => {
             if (typeof AOS !== 'undefined') {
                 AOS.init();
                 AOS.refreshHard();
-                console.log('[REVIEWS] ✓ AOS refreshed for reviews');
             }
         }, 100);
         
     } catch (error) {
-        console.error('[REVIEWS] ✗ Error loading reviews:', error.message);
+        // Silently handle errors
     }
 }
 
@@ -57,7 +50,6 @@ function renderReviews(reviews) {
                             document.querySelector('.testimonial-section .row:not(.justify-content-center)');
     
     if (!reviewsContainer) {
-        console.error('[REVIEWS] Reviews container not found');
         return;
     }
     
@@ -69,8 +61,6 @@ function renderReviews(reviews) {
         const reviewCard = createReviewCard(review);
         reviewsContainer.appendChild(reviewCard);
     });
-    
-    console.log(`[REVIEWS] Rendered ${reviews.length} reviews`);
 }
 
 /**

@@ -1,8 +1,6 @@
 // Load and render testimonials dynamically from JSON file for index page
-console.log('[TESTIMONIALS] Script loaded');
 
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('[TESTIMONIALS] DOM Ready - loading testimonials...');
     await loadTestimonialsData();
 });
 
@@ -11,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadTestimonialsData() {
     try {
-        console.log('[TESTIMONIALS] Fetching testimonials from JSON...');
-        
         // Fetch testimonials data from JSON file
         const response = await fetch('/assets/data/reviews.json', {
             method: 'GET',
@@ -28,11 +24,9 @@ async function loadTestimonialsData() {
         
         // Parse JSON response
         const result = await response.json();
-        console.log(`[TESTIMONIALS] ✓ Received ${result.reviews.length} testimonials from JSON`);
         
         // Render the testimonials
         renderTestimonials(result.reviews);
-        console.log('[TESTIMONIALS] ✓✓✓ TESTIMONIALS LOADED SUCCESSFULLY ✓✓✓');
         
         // Re-initialize slick slider after rendering
         if (typeof $ !== 'undefined' && $('.testimonial-slider').length) {
@@ -53,19 +47,17 @@ async function loadTestimonialsData() {
                     arrows: false,
                     fade: false
                 });
-                console.log('[TESTIMONIALS] Slick slider initialized');
                 
                 // Refresh AOS after slider is initialized
                 if (typeof AOS !== 'undefined') {
                     AOS.init();
                     AOS.refreshHard();
-                    console.log('[TESTIMONIALS] ✓ AOS refreshed');
                 }
             }, 100);
         }
         
     } catch (error) {
-        console.error('[TESTIMONIALS] ✗ Error loading testimonials:', error.message);
+        // Silently handle errors
     }
 }
 
@@ -77,7 +69,6 @@ function renderTestimonials(reviews) {
     const testimonialsContainer = document.querySelector('.testimonial-slider');
     
     if (!testimonialsContainer) {
-        console.error('[TESTIMONIALS] Testimonials container not found');
         return;
     }
     
@@ -89,8 +80,6 @@ function renderTestimonials(reviews) {
         const testimonialCard = createTestimonialCard(review);
         testimonialsContainer.appendChild(testimonialCard);
     });
-    
-    console.log(`[TESTIMONIALS] Rendered ${reviews.length} testimonials`);
 }
 
 /**

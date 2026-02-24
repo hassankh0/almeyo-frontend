@@ -6,6 +6,10 @@ COPY . /usr/share/nginx/html/
 # Copy nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# Suppress nginx logs - no console logs visible to clients
+RUN ln -sf /dev/null /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
+
 # Expose port
 EXPOSE 80
 

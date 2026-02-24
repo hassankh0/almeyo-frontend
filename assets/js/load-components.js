@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 headerPlaceholder.outerHTML = data;
                 reinitializeHeader();
             })
-            .catch(error => console.error('Error loading header:', error));
+            .catch(error => {});
     }
 
     // Load footer with retry mechanism for mobile reliability
@@ -40,8 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         footerPlaceholder.insertAdjacentHTML('afterend', data);
                         footerPlaceholder.remove();
                         
-                        console.log('✓ Footer HTML inserted successfully');
-                        
                         // Reinitialize all animation and scroll systems
                         setTimeout(function() {
                             // Refresh AOS animations multiple times on mobile to ensure detection
@@ -59,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                     setTimeout(() => AOS.refreshHard(), 100);
                                     setTimeout(() => AOS.refreshHard(), 300);
                                 }
-                                
-                                console.log('✓ AOS refreshed for footer');
                             }
                             
                             // Kill and recreate ScrollSmoother only on desktop
@@ -77,9 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                         smooth: 1,
                                         effects: true
                                     });
-                                    console.log('✓ ScrollSmoother recreated');
                                 } catch(e) {
-                                    console.log('ScrollSmoother recreation:', e.message);
+                                    // Silently handle ScrollSmoother errors
                                 }
                             }
                             
@@ -87,18 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
                             if (typeof ScrollTrigger !== 'undefined') {
                                 ScrollTrigger.refresh();
                             }
-                            
-                            console.log('✓ Footer animations and scroll system reinitialized');
                         }, 150);
-                    } else {
-                        console.error('Footer HTML is empty');
                     }
                 })
                 .catch(error => {
-                    console.error('Error loading footer:', error);
+                    // Silently handle footer loading errors
                     // Retry up to 2 times on mobile
                     if (retryCount < 2 && window.innerWidth < 768) {
-                        console.log(`Retrying footer load... (attempt ${retryCount + 1})`);
                         setTimeout(() => loadFooter(retryCount + 1), 1000);
                     }
                 });
@@ -118,7 +108,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 offset: 100
             });
             AOS.refreshHard();
-            console.log('✓ AOS initialized globally for scroll animations');
         }
         
         // Add scroll listener for mobile to ensure animations trigger
@@ -136,8 +125,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     ticking = true;
                 }
             }, false);
-            
-            console.log('✓ Mobile scroll listener enabled for AOS');
         }
     }, 300);
 });

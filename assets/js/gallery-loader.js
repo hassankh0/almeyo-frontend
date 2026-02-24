@@ -1,8 +1,6 @@
 // Load and render gallery dynamically from JSON file
-console.log('[GALLERY] Script loaded');
 
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('[GALLERY] DOM Ready - loading gallery...');
     await loadGalleryData();
 });
 
@@ -11,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadGalleryData() {
     try {
-        console.log('[GALLERY] Fetching gallery from JSON...');
-        
         // Fetch gallery data from JSON file
         const response = await fetch('/assets/data/gallery.json', {
             method: 'GET',
@@ -28,11 +24,9 @@ async function loadGalleryData() {
         
         // Parse JSON response
         const result = await response.json();
-        console.log(`[GALLERY] ✓ Received ${result.gallery.length} images from JSON`);
         
         // Render the gallery
         renderGallery(result.gallery);
-        console.log('[GALLERY] ✓✓✓ GALLERY LOADED SUCCESSFULLY ✓✓✓');
         
         // Initialize magnific popup for gallery
         setTimeout(() => {
@@ -43,19 +37,17 @@ async function loadGalleryData() {
                         enabled: true
                     }
                 });
-                console.log('[GALLERY] ✓ Magnific popup initialized');
             }
             
             // Refresh AOS
             if (typeof AOS !== 'undefined') {
                 AOS.init();
                 AOS.refreshHard();
-                console.log('[GALLERY] ✓ AOS refreshed');
             }
         }, 100);
         
     } catch (error) {
-        console.error('[GALLERY] ✗ Error loading gallery:', error.message);
+        // Silently handle errors
     }
 }
 
@@ -67,7 +59,7 @@ function renderGallery(images) {
     const galleryContainer = document.querySelector('.gallery-section .row');
     
     if (!galleryContainer) {
-        console.error('[GALLERY] Gallery container not found');
+
         return;
     }
     
@@ -79,8 +71,6 @@ function renderGallery(images) {
         const galleryItem = createGalleryItem(image, index);
         galleryContainer.appendChild(galleryItem);
     });
-    
-    console.log(`[GALLERY] Rendered ${images.length} gallery items`);
 }
 
 /**

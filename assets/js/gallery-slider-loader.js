@@ -1,8 +1,6 @@
 // Load and render gallery slider dynamically from JSON file for index page
-console.log('[GALLERY SLIDER] Script loaded');
 
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('[GALLERY SLIDER] DOM Ready - loading gallery slider...');
     await loadGallerySliderData();
 });
 
@@ -11,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadGallerySliderData() {
     try {
-        console.log('[GALLERY SLIDER] Fetching gallery from JSON...');
-        
         // Fetch gallery data from JSON file
         const response = await fetch('/assets/data/gallery.json', {
             method: 'GET',
@@ -28,11 +24,9 @@ async function loadGallerySliderData() {
         
         // Parse JSON response
         const result = await response.json();
-        console.log(`[GALLERY SLIDER] ✓ Received ${result.gallery.length} images from JSON`);
         
         // Render the gallery slider
         renderGallerySlider(result.gallery);
-        console.log('[GALLERY SLIDER] ✓✓✓ GALLERY SLIDER LOADED SUCCESSFULLY ✓✓✓');
         
         // Initialize slick slider after rendering
         setTimeout(() => {
@@ -66,12 +60,11 @@ async function loadGallerySliderData() {
                         }
                     ]
                 });
-                console.log('[GALLERY SLIDER] ✓ Slick slider initialized');
             }
         }, 100);
         
     } catch (error) {
-        console.error('[GALLERY SLIDER] ✗ Error loading gallery:', error.message);
+        // Silently handle errors
     }
 }
 
@@ -83,7 +76,6 @@ function renderGallerySlider(images) {
     const sliderContainer = document.querySelector('.gallery-slider');
     
     if (!sliderContainer) {
-        console.error('[GALLERY SLIDER] Gallery slider container not found');
         return;
     }
     
@@ -95,8 +87,6 @@ function renderGallerySlider(images) {
         const sliderItem = createSliderItem(image);
         sliderContainer.appendChild(sliderItem);
     });
-    
-    console.log(`[GALLERY SLIDER] Rendered ${images.length} gallery slider items`);
 }
 
 /**

@@ -1,8 +1,6 @@
 // Load and render menu dynamically from API
-console.log('[MENU] Script loaded');
 
 document.addEventListener('DOMContentLoaded', async function() {
-    console.log('[MENU] DOM Ready - loading menu...');
     await loadMenuData();
 });
 
@@ -11,8 +9,6 @@ document.addEventListener('DOMContentLoaded', async function() {
  */
 async function loadMenuData() {
     try {
-        console.log('[MENU] Fetching menu from API...');
-        
         // Fetch menu data from backend API
         const response = await fetch('/api/menu', {
             method: 'GET',
@@ -28,18 +24,15 @@ async function loadMenuData() {
         
         // Parse JSON response
         const result = await response.json();
-        console.log(`[MENU] ✓ Received ${result.data.length} items from API`);
         
         // Transform API data to categorized structure
         const categories = transformMenuData(result.data);
-        console.log(`[MENU] ✓ Organized into ${categories.length} categories`);
         
         // Render the menu
         renderMenu(categories);
-        console.log('[MENU] ✓✓✓ MENU LOADED SUCCESSFULLY ✓✓✓');
         
     } catch (error) {
-        console.error('[MENU] ✗ Error loading menu:', error.message);
+        // Silently catch errors - logging disabled for production
     }
 }
 
@@ -105,7 +98,6 @@ function renderMenu(categories) {
     const menuContainer = document.getElementById('dynamic-menu-container');
     
     if (!menuContainer) {
-        console.error('Menu container not found');
         return;
     }
     
